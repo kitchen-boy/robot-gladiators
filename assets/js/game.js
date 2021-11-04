@@ -82,4 +82,5 @@ else {
 // run fight function to start game
 for(var i = 0; i < enemyNames.length; i++) {
     fight(enemyNames[i]);
-  }
+
+}
