@@ -5,22 +5,22 @@
 // "LOSE" - Player robot's health is zero or less
 
 var playerName = window.prompt("What is your robot's name?");
-var playerHealth = 100;
-var playerAttack = 10;
+var playerHealth = 20;
+var playerAttack = 5;
 var playerMoney = 10;
 
 // You can also log multiple values at once like this
 console.log(playerName, playerAttack, playerHealth, playerMoney);
 // enemyNames array
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble", "I-Robot"];
-var enemyHealth = 50;
-var enemyAttack = 12;
+var enemyHealth = 10;
+var enemyAttack = 6;
 console.log(enemyNames, enemyHealth);
 
 //fight function
 var fight = function(enemyName) {
-    //repeat & execute as long as the enemy-robot is alive
-    while(enemyHealth > 0) {
+    //repeat & execute as long as the player & enemy-robot is alive
+    while(playerHealth > 0 && enemyHealth > 0) {
         // ask player if they'd like to fight or run    
         var promptFight = window.prompt ("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'Skip' to choose.");
 
@@ -36,9 +36,11 @@ var fight = function(enemyName) {
 
             //check enemy's health
             if (enemyHealth <= 0) {
-            window.alert(enemyName + " has died!");
+                window.alert(enemyName + " has died!");
+                window.alert(playerName + " has defeated " + enemyName +"!");
+                break;
             } else {
-            window.alert(enemyName + " still has " + enemyHealth + " health left.");
+                window.alert(enemyName + " still has " + enemyHealth + " health left.");
             }
 
             // Subtract the value of "enemyAttack" from the value of "playerHealth"
@@ -51,9 +53,10 @@ var fight = function(enemyName) {
 
             //check player's health
             if (playerHealth <= 0) {
-            window.alert(playerName + " has died!");
+                window.alert(playerName + " has died!");
+                break;
             } else {
-            window.alert(playerName + " still has " + playerHealth + " health left.");
+                window.alert(playerName + " still has " + playerHealth + " health left.");
             }   
 
             // if player chooses to skip
@@ -86,7 +89,7 @@ for(var i = 0; i < enemyNames.length; i++) {
     //Assign element in enemy-robot array to store current enemy-robot
     var pickedEnemyName = enemyNames[i];
     // Reset enemy-robot's health
-    enemyHealth = 50;
+    enemyHealth = 10;
     //call fight function with enemy-robot
     fight(pickedEnemyName);
 }
