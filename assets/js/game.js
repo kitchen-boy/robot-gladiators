@@ -83,5 +83,10 @@ var fight = function(enemyName) {
 // run fight function call (replaced with a <for> loop) to start game
 // <for> loop calls fight function multiple times using the element in the enemyNames[i] array as the argument
 for(var i = 0; i < enemyNames.length; i++) {
-    fight(enemyNames[i]);
+    //Assign element in enemy-robot array to store current enemy-robot
+    var pickedEnemyName = enemyNames[i];
+    // Reset enemy-robot's health
+    enemyHealth = 50;
+    //call fight function with enemy-robot
+    fight(pickedEnemyName);
 }
