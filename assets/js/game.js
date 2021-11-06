@@ -3,11 +3,13 @@
 //    * Fight all enemy-robots
 //    * Defeat each enemy-robot
 // "LOSE" - Player robot's health is zero or less
+// Display player's score in an alert & ask player if they want to play again.
+// After player defeats or skips an enemy-robot, player is asked if they want to visit the shop. 
 
 
 var playerName = window.prompt("What is your robot's name?");
-var playerHealth = 20;
-var playerAttack = 5;
+var playerHealth = 100;
+var playerAttack = 10;
 var playerMoney = 10;
 
 // You can also log multiple values at once like this
@@ -15,7 +17,7 @@ console.log(playerName, playerAttack, playerHealth, playerMoney);
 // enemyNames array
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble", "I-Robot"];
 var enemyHealth = 50;
-var enemyAttack = 6;
+var enemyAttack = 12;
 console.log(enemyNames, enemyHealth);
 
 //fight function
@@ -83,30 +85,41 @@ var fight = function(enemyName) {
     }
 };
 
-// run fight function call (replaced with a <for> loop) to start game
-// <for> loop calls fight function multiple times using the element in the enemyNames[i] array as the argument
-for(var i = 0; i < enemyNames.length; i++) {
-    if (playerHealth > 0){
-        //let player know what round they are in; arrays start at 0 so iterator + 1 = round number
-        window.alert("WELCOME TO ROBOT GLADIATORS! Round " + (i+1));
+// function to start a new game
+var startGame = function() {
+    // reset player stats
+    playerHealth = 100;
+    playerAttack = 10;
+    playerMoney = 10;
+
+    // other logic remains the same...
+    for (var i = 0; i < enemyNames.length; i++) {
+        if (playerHealth > 0){
+            //let player know what round they are in; arrays start at 0 so iterator + 1 = round number
+            window.alert("WELCOME TO ROBOT GLADIATORS! Round " + (i + 1));
     
-    //Assign element in enemy-robot array to store current enemy-robot
-    // New enemy is chosen to fight based on index of enemyNames array
-    var pickedEnemyName = enemyNames[i];
-    // Reset enemy-robot's health before starting new fight
-    enemyHealth = 50;
+            //Assign element in enemy-robot array to store current enemy-robot
+            // New enemy is chosen to fight based on index of enemyNames array
+            var pickedEnemyName = enemyNames[i];
+            // Reset enemy-robot's health before starting new fight
+            enemyHealth = 50;
 
-    // use debugger to pause script from running & check what's going on at that moment in the code.
-    //debugger;
+            // use debugger to pause script from running & check what's going on at that moment in the code.
+            //debugger;
 
-    //call fight function with new enemy-robot
-    /* pass the pickedEnemyName variable's value into the fight function, 
-    where it will assume the value of the enemyName parameter */
-    fight(pickedEnemyName);  
-    }   
-    // if player isn't alive, stop the game
-    else {
-    window.alert("You have lost your robot " + playerName + " in battle! Game Over!");
-    break;
+            //call fight function with new enemy-robot
+            /* pass the pickedEnemyName variable's value into the fight function, 
+            where it will assume the value of the enemyName parameter */
+            fight(pickedEnemyName);  
+        } 
+        // if player isn't alive, stop the game
+        else {
+            window.alert("You have lost your robot " + playerName + " in battle! Game Over!");
+        break;
+        }
     }
-}
+    // play again
+    startGame(); 
+    //debugger;
+};
+startGame();
