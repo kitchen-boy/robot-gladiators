@@ -4,6 +4,7 @@
 //    * Defeat each enemy-robot
 // "LOSE" - Player robot's health is zero or less
 
+
 var playerName = window.prompt("What is your robot's name?");
 var playerHealth = 20;
 var playerAttack = 5;
@@ -13,7 +14,7 @@ var playerMoney = 10;
 console.log(playerName, playerAttack, playerHealth, playerMoney);
 // enemyNames array
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble", "I-Robot"];
-var enemyHealth = 10;
+var enemyHealth = 50;
 var enemyAttack = 6;
 console.log(enemyNames, enemyHealth);
 
@@ -55,7 +56,9 @@ var fight = function(enemyName) {
             window.alert(playerName + " has defeated " + enemyName +"!");
             // award player money for winning
             playerMoney = playerMoney + 20;
-            window.alert(playerName + " has won " + playerMoney + " money points!");
+            window.alert(playerName + " won 20 money points!");
+            window.alert(playerName + " now has " + playerMoney + " money points!");
+            
             //leave while() loop since enemy is dead  
             break;
         } else {
@@ -83,10 +86,27 @@ var fight = function(enemyName) {
 // run fight function call (replaced with a <for> loop) to start game
 // <for> loop calls fight function multiple times using the element in the enemyNames[i] array as the argument
 for(var i = 0; i < enemyNames.length; i++) {
+    if (playerHealth > 0){
+        //let player know what round they are in; arrays start at 0 so iterator + 1 = round number
+        window.alert("WELCOME TO ROBOT GLADIATORS! Round " + (i+1));
+    
     //Assign element in enemy-robot array to store current enemy-robot
+    // New enemy is chosen to fight based on index of enemyNames array
     var pickedEnemyName = enemyNames[i];
-    // Reset enemy-robot's health
-    enemyHealth = 10;
-    //call fight function with enemy-robot
-    fight(pickedEnemyName);
+    // Reset enemy-robot's health before starting new fight
+    enemyHealth = 50;
+
+    // use debugger to pause script from running & check what's going on at that moment in the code.
+    //debugger;
+
+    //call fight function with new enemy-robot
+    /* pass the pickedEnemyName variable's value into the fight function, 
+    where it will assume the value of the enemyName parameter */
+    fight(pickedEnemyName);  
+    }   
+    // if player isn't alive, stop the game
+    else {
+    window.alert("You have lost your robot " + playerName + " in battle! Game Over!");
+    break;
+    }
 }
