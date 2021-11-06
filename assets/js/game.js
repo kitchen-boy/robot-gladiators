@@ -6,7 +6,6 @@
 // Display player's score in an alert & ask player if they want to play again.
 // After player defeats or skips an enemy-robot, player is asked if they want to visit the shop. 
 
-
 var playerName = window.prompt("What is your robot's name?");
 var playerHealth = 100;
 var playerAttack = 10;
@@ -184,12 +183,12 @@ var shop = function() {
 
         case "UPGRADE": // new case    
         case "upgrade":
-            if (playerMoney >= 7) {
-            window.alert("Upgrading player's attack by 6 for 7 dollars.");
+            if (playerMoney >= 8) {
+            window.alert("Upgrading player's attack by 7 for 8 dollars.");
 
             // increase attack and decrease money
-            playerAttack = playerAttack + 6;
-            playerMoney = playerMoney - 7;
+            playerAttack = playerAttack + 7;
+            playerMoney = playerMoney - 8;
             }
             else {
                 window.alert("You don't have enough money!");
