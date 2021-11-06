@@ -1,5 +1,11 @@
 # robot-gladiators
 Module 3 - JavaScript 
+3.1 - JavaScript Basics
+3.2 - if & for Loops
+3.3 - Logic into multiple functions
+3.4 - Optimize Code with objects
+3.5 - Resolve Bugs &  add enhancements
+
 JavaScript is used to code a single round of Robot Gladiators. When we're done, the game will follow this sequence:
 
 1. The game will prompt the player to name their robot.
