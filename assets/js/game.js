@@ -31,6 +31,10 @@ var fight = function(enemy) {
                 break;
             }
         }
+        else {
+            window.alert("You did not pick a valid option. You are automatically entered in this fight!");
+        }
+
         // ** generate RANDOM damage value based on player's Attack power
         var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
 
