@@ -77,10 +77,8 @@ var fight = function(enemy) {
 
 // function to start a new game
 var startGame = function() {
-    // reset player stats
-    playerInfo.health = 100;
-    playerInfo.attack = 10;
-    playerInfo.money = 10;
+    // reset player stats, using playerInfo object method, playerInfo.reset()
+    playerInfo.reset();
 
     // other logic remains the same...
     for (var i = 0; i < enemyInfo.length; i++) {
@@ -159,36 +157,17 @@ var shop = function() {
     switch (shopOptionPrompt) {
         case "REFILL": // new case
         case "refill":
-            if (playerInfo.money >= 7) {
-            window.alert("Refilling player's health by 10 for 7 dollars.");
-
-            // increase health and decrease money
-            playerInfo.health = playerInfo.health + 10; 
-            playerInfo.money = playerInfo.money - 7;
-            }
-            else {
-                window.alert("You don't have enough money!");
-            } 
+            playerInfo.refillHealth();
             break;
 
         case "UPGRADE": // new case    
         case "upgrade":
-            if (playerInfo.money >= 8) {
-            window.alert("Upgrading player's attack by 4 for 8 dollars.");
-
-            // increase attack and decrease money
-            playerInfo.attack = playerInfo.attack + 4;
-            playerInfo.money = playerInfo.money - 8;
-            }
-            else {
-                window.alert("You don't have enough money!");
-            }
+            playerInfo.upgradeAttack();
             break;
 
         case "LEAVE": // new case    
         case "leave":
             window.alert("Leaving the store.");
-            
             // do nothing, so function will end
             break;
         
@@ -233,7 +212,35 @@ var playerInfo = {
     name: window.prompt("What is your robot's name?"),
     health: 100,
     attack: 10, 
-    money: 10
+    money: 10, 
+    reset: function() {
+        this.health = 100;
+        this.money = 10; 
+        this.attack = 10;
+    }, // comma! in object properties (NOT semi-colon)
+    // can also write conditional logic in object methods! e.g. if statements & alert() calls
+    refillHealth: function() {
+        if (this.money >=7) {
+            window.alert("Refilling player's health by 20 for 7 dollars.");
+            // increase health and decrease money
+            this.health +=20;
+            this.money -=7;
+        }
+        else {
+            window.alert("You don't have enough money!");
+        }  
+    }, //comma!
+    upgradeAttack: function() {
+        if (this.money >=7) {
+            window.alert("Upgrading player's attack by 6 for 7 dollars.");
+            // increase attack and decrease money
+            this.attack +=6;
+            this.money -=7;
+        }
+        else {
+            window.alert("You don't have enough money!");
+        }
+    }
 };
 
 // start first game when page loads
