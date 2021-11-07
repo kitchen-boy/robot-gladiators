@@ -37,14 +37,16 @@ var fight = function(enemyName) {
             if (confirmSkip) {
                 window.alert(playerName + " has chosen to skip the fight. Goodbye!");
                 // subtract money from playerMoney for skipping
-                playerMoney = playerMoney - 10;
+                playerMoney = Math.max(0, playerMoney - 10);
                 console.log(playerName, "playerMoney", playerMoney);
                 window.alert("Penalty = -10 Money. " + playerName + " now has " + playerMoney + " money points.");
                 break;
             }
         }
-        // remove enemy's health by substracting the amount set in the playerAttack variable
-        enemyHealth = enemyHealth - playerAttack;
+        // ** generate RANDOM damage value based on player's Attack power
+        var damage = randomNumber(playerAttack - 3, playerAttack);
+
+        enemyHealth = Math.max(0, enemyHealth - damage);
 
         // Log a resulting message to the console so we know that it worked.
         console.log(
@@ -65,8 +67,10 @@ var fight = function(enemyName) {
             window.alert(enemyName + " still has " + enemyHealth + " health left.");
         }
 
-        // Subtract the value of "enemyAttack" from the value of "playerHealth"
-        playerHealth = playerHealth - enemyAttack;
+        // ** generate RANDOM damage value based on enemy robot's Attack power
+        var damage = randomNumber(enemyAttack - 3, enemyAttack);
+
+        playerHealth = Math.max(0, playerHealth - damage);
 
         //Log a resulting message to the console so we know that it worked.
         console.log (
@@ -86,7 +90,7 @@ var fight = function(enemyName) {
 // function to start a new game
 var startGame = function() {
     // reset player stats
-    playerHealth = 100;
+    playerHealth = 50;
     playerAttack = 10;
     playerMoney = 10;
 
@@ -99,8 +103,9 @@ var startGame = function() {
             //Assign element in enemy-robot array to store current enemy-robot
             // New enemy is chosen to fight based on index of enemyNames array
             var pickedEnemyName = enemyNames[i];
-            // Reset enemy-robot's health before starting new fight
-            enemyHealth = 50;
+
+            // *** random NUMBER reset enemy-robot's HEALTH before starting new fight ***
+            enemyHealth = randomNumber(40, 60);
 
             // use debugger to pause script from running & check what's going on at that moment in the code.
             //debugger;
@@ -118,10 +123,7 @@ var startGame = function() {
                 // if yes, take them to the store() function
                 if (storeConfirm) {
                     shop();
-
                 }
-                
-                debugger;
             }
         } 
         // if player isn't alive, stop the game
@@ -207,9 +209,15 @@ var shop = function() {
 
             // call shop() again to force player to pick a valid option
             shop();
-            break;
-        
+            break;   
     }
+};
+
+//function to generate a random numeric value
+var randomNumber = function(min, max) {
+    var value = Math.floor(Math.random() * 21) + 40;
+
+    return value;
 };
 
 // start first game when page loads
