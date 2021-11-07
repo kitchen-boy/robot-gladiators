@@ -16,7 +16,7 @@ console.log(playerName, playerAttack, playerHealth, playerMoney);
 // enemyNames array
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble", "I-Robot"];
 var enemyHealth = 50;
-var enemyAttack = 15;
+var enemyAttack = 12;
 console.log(enemyNames, enemyHealth);
 
 //fight function
