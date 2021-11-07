@@ -7,8 +7,8 @@
 // After player defeats or skips an enemy-robot, player is asked if they want to visit the shop. 
 
 var playerName = window.prompt("What is your robot's name?");
-var playerHealth = 100;
-var playerAttack = 10;
+var playerHealth = 50;
+var playerAttack = 7;
 var playerMoney = 10;
 
 // You can also log multiple values at once like this
@@ -16,7 +16,7 @@ console.log(playerName, playerAttack, playerHealth, playerMoney);
 // enemyNames array
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble", "I-Robot"];
 var enemyHealth = 50;
-var enemyAttack = 12;
+var enemyAttack = 15;
 console.log(enemyNames, enemyHealth);
 
 //fight function
@@ -91,7 +91,7 @@ var fight = function(enemyName) {
 var startGame = function() {
     // reset player stats
     playerHealth = 50;
-    playerAttack = 10;
+    playerAttack = 7;
     playerMoney = 10;
 
     // other logic remains the same...
@@ -172,10 +172,10 @@ var shop = function() {
         case "REFILL": // new case
         case "refill":
             if (playerMoney >= 7) {
-            window.alert("Refilling player's health by 20 for 7 dollars.");
+            window.alert("Refilling player's health by 10 for 7 dollars.");
 
             // increase health and decrease money
-            playerHealth = playerHealth + 20; 
+            playerHealth = playerHealth + 10; 
             playerMoney = playerMoney - 7;
             }
             else {
@@ -186,10 +186,10 @@ var shop = function() {
         case "UPGRADE": // new case    
         case "upgrade":
             if (playerMoney >= 8) {
-            window.alert("Upgrading player's attack by 7 for 8 dollars.");
+            window.alert("Upgrading player's attack by 4 for 8 dollars.");
 
             // increase attack and decrease money
-            playerAttack = playerAttack + 7;
+            playerAttack = playerAttack + 4;
             playerMoney = playerMoney - 8;
             }
             else {
@@ -199,7 +199,7 @@ var shop = function() {
 
         case "LEAVE": // new case    
         case "leave":
-            window.alert("Leaving the store)");
+            window.alert("Leaving the store.");
             
             // do nothing, so function will end
             break;
